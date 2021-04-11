@@ -1,0 +1,66 @@
+
+
+
+
+{{sender_name}}
+{{sender_address}}
+{{sender_postcode}}
+
+{{sender_company_ID}}
+
+
+
+
+{{sender_location}}, den {{bill_date}}			{{receiver_name}}
+								{{receiver_address}}
+								{{receiver_postcode}}
+
+Kundennummer:      {{customer_number}}
+Auftragsnummer:    {{job_number}}
+
+Rechnung Nr       {{bill_number}}
+-----------------------
+{{#items}}
+	{{item_number}}	{{{item_label}}}{{item_amount_space}}{{amount}}{{unit_price_space}}{{unit_price}}	CHF{{total_space}}{{total}}  {{VAT}}
+{{/items}}
+                                                                    -----------
+                                                      Total CHF{{bill_total_space}}{{bill_total}}
+
+                                                      MWST  CHF{{VAT_total_space}}{{VAT_total}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zahlungsziel ohne Abzug {{payment_taget}} Tage ({{pay_by_date}})
+
+Einzahlungsschein
+
+
+
+
+
+
+
+
+
+
+
+	{{bill_total_fr}} . {{bill_total_rp}}		{{bill_total_fr}} . {{bill_total_rp}}		{{receiver_name}}
+									{{receiver_address}}
+0 00000 00000 00000					{{receiver_postcode}}
+
+{{receiver_name}}
+{{receiver_address}}
+{{receiver_postcode}}

@@ -1,8 +1,14 @@
-Tue Apr  6 10:23:43 2021
- -- LATEST LOG --
+ -- Bill Retriever Log --
 
-Connecting to server...
-Logged in successfully.
-Retrieved bill names.
-Retrieved and deleted bill files.
-Closing connection.
+[16:38:13] Connecting to server...
+[16:38:13] Logged in successfully.
+[16:38:13] Retrieved bill names.
+[16:38:13] Retrieved and deleted bill files.
+[16:38:13] Closing connection.
+[16:38:13] Parsing Data...
+[16:38:13] Data Parsed Successfully.
+[16:38:13] Generating human-readable file...
+[16:38:13] TXT File Generated Successfully.
+[16:38:13] Generating XML file...
+[16:38:13] XML File Generated Successfully.
+[16:38:13] Generated text file.

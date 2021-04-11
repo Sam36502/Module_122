@@ -1,0 +1,149 @@
+<XML-FSCM-INVOICE-2003A>
+  <INTERCHANGE>
+    <IC-SENDER>
+      <Pid>{{party_ID}}</Pid>
+    </IC-SENDER>
+    <IC-RECEIVER>
+      <Pid>{{party_ID}}</Pid>
+    </IC-RECEIVER>
+    <IR-Ref />
+  </INTERCHANGE>
+  <INVOICE>
+    <HEADER>
+      <FUNCTION-FLAGS>
+        <Confirmation-Flag />
+        <Canellation-Flag />
+      </FUNCTION-FLAGS>
+      <MESSAGE-REFERENCE>
+        <REFERENCE-DATE>
+          <Reference-No>{{ref_num}}</Reference-No>
+          <Date>{{date_squash}}</Date>
+        </REFERENCE-DATE>
+      </MESSAGE-REFERENCE>
+      <PRINT-DATE>
+        <Date>{{date_squash}}</Date>
+      </PRINT-DATE>
+      <REFERENCE>
+        <INVOICE-REFERENCE>
+          <REFERENCE-DATE>
+            <Reference-No>{{bill_num}}</Reference-No>
+            <Date>{{date_squash}}</Date>
+          </REFERENCE-DATE>
+        </INVOICE-REFERENCE>
+        <ORDER>
+          <REFERENCE-DATE>
+            <Reference-No>{{job_num}}</Reference-No>
+            <Date>{{date_squash}}</Date>
+          </REFERENCE-DATE>
+        </ORDER>
+        <REMINDER Which="MAH">
+          <REFERENCE-DATE>
+            <Reference-No></Reference-No>
+            <Date></Date>
+          </REFERENCE-DATE>
+        </REMINDER>
+        <OTHER-REFERENCE Type="ADE">
+          <REFERENCE-DATE>
+            <Reference-No>12345678</Reference-No>
+            <Date>{{date_squash}}</Date>
+          </REFERENCE-DATE>
+        </OTHER-REFERENCE>
+      </REFERENCE>
+      <BILLER>
+        <Tax-No>{{company_ID}}</Tax-No>
+        <Doc-Reference Type="ESR-ALT "></Doc-Reference>
+        <PARTY-ID>
+          <Pid>{{party_ID}}</Pid>
+        </PARTY-ID>
+        <NAME-ADDRESS Format="COM">
+          <NAME>
+            <Line-35>{{sender_name}}</Line-35>
+            <Line-35>{{sender_address}}</Line-35>
+            <Line-35>{{sender_postcode}}</Line-35>
+            <Line-35></Line-35>
+            <Line-35></Line-35>
+          </NAME>
+          <STREET>
+            <Line-35></Line-35>
+            <Line-35></Line-35>
+            <Line-35></Line-35>
+          </STREET>
+          <City></City>
+          <State></State>
+          <Zip></Zip>
+          <Country></Country>
+        </NAME-ADDRESS>
+        <BANK-INFO>
+          <Acct-No></Acct-No>
+          <Acct-Name></Acct-Name>
+          <BankId Type="BCNr-nat" Country="CH">001996</BankId>
+        </BANK-INFO>
+      </BILLER>
+      <PAYER>
+        <PARTY-ID>
+          <Pid>{{party_ID}}</Pid>
+        </PARTY-ID>
+        <NAME-ADDRESS Format="COM">
+          <NAME>
+            <Line-35>{{receiver_name}}</Line-35>
+            <Line-35>{{receiver_address}}</Line-35>
+            <Line-35>{{receiver_postcode}}</Line-35>
+            <Line-35></Line-35>
+            <Line-35></Line-35>
+          </NAME>
+          <STREET>
+            <Line-35></Line-35>
+            <Line-35></Line-35>
+            <Line-35></Line-35>
+          </STREET>
+          <City></City>
+          <State></State>
+          <Zip></Zip>
+          <Country></Country>
+        </NAME-ADDRESS>
+      </PAYER>
+    </HEADER>
+    <LINE-ITEM />
+    <SUMMARY>
+      <INVOICE-AMOUNT>
+        <Amount>{{total_squash}}</Amount>
+      </INVOICE-AMOUNT>
+      <VAT-AMOUNT>
+        <Amount></Amount>
+      </VAT-AMOUNT>
+      <DEPOSIT-AMOUNT>
+        <Amount></Amount>
+          <REFERENCE-DATE>
+            <Reference-No></Reference-No>
+            <Date></Date>
+          </REFERENCE-DATE>
+      </DEPOSIT-AMOUNT>
+      <EXTENDED-AMOUNT Type="79">
+        <Amount></Amount>
+      </EXTENDED-AMOUNT>
+      <TAX>
+        <TAX-BASIS>
+          <Amount></Amount>
+        </TAX-BASIS>
+        <Rate Categorie="S">0</Rate>
+        <Amount></Amount>
+      </TAX>
+      <PAYMENT-TERMS>
+        <BASIC Payment-Type="ESR" Terms-Type="1">
+          <TERMS>
+            <Payment-Period Type="M" On-Or-After="1" Reference-Day="{{bill_date_day}}">{{payment_target}}</Payment-Period>
+            <Date>{{pay_by_squash}}</Date>
+          </TERMS>
+        </BASIC>
+        <DISCOUNT Terms-Type="22">
+          <Discount-Percentage>0.0</Discount-Percentage>
+          <TERMS>
+            <Payment-Period Type="M" On-Or-After="1" Reference-Day="{{bill_date_day}}"></Payment-Period>
+            <Date></Date>
+          </TERMS>
+          <Back-Pack-Container Encode="Base64"> </Back-Pack-Container>
+        </DISCOUNT>
+      </PAYMENT-TERMS>
+    </SUMMARY>
+  </INVOICE>
+</XML-FSCM-INVOICE-2003A>
