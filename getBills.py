@@ -23,6 +23,7 @@ ABHOLSERVER_PATH = 'out/AP18aPearce'
 PAYSERVER_HOSTNAME = '134.119.225.245'
 PAYSERVER_USERNAME = '310721-297-zahlsystem'
 PAYSERVER_PASSWORD = 'Berufsschule8005!'
+PAYSERVER_PATH = 'in/AP18aPearce'
 
 
 # Functions
@@ -32,7 +33,12 @@ def log(str):
     logfile.write(current_time + str + '\n')
 
 
-logfile = open(LOG_FILE, 'w')
+def getBillNames(name):
+    if name.endswith('.data'):
+        bill_names.append(name)
+
+
+logfile = open(LOG_FILE, 'a')
 logfile.write(' -- Bill Retriever Log --\n\n')
 
 # Connect to Server
@@ -45,13 +51,6 @@ ftp.cwd(ABHOLSERVER_PATH)
 
 # Get names of new bills
 bill_names = []
-
-
-def getBillNames(name):
-    if name.endswith('.data'):
-        bill_names.append(name)
-
-
 ftp.retrlines('NLST', getBillNames)
 log('Retrieved bill names.')
 
@@ -132,7 +131,7 @@ for curr_bill in bills:
             'receiver_name': curr_bill.receiver.name,
             'receiver_address': curr_bill.receiver.address,
             'receiver_postcode': curr_bill.receiver.postcode_and_city,
-            'total_squash': str(int(curr_bill.billInfo.total * 10)).zfill(10),
+            'total_squash': str(int(curr_bill.billInfo.total * 100)).zfill(10),
             'bill_date_day': curr_bill.billInfo.bill_date.day,
             'payment_target': curr_bill.billInfo.payment_target,
             'pay_by_squash': curr_bill.billInfo.pay_by.strftime('%Y%m%d'),
@@ -150,4 +149,23 @@ for curr_bill in bills:
 
     log('Generated text file.')
 
+# Connect to Server
+log('Connecting to server...')
+ftp = FTP(PAYSERVER_HOSTNAME)
+ftp.login(PAYSERVER_USERNAME, PAYSERVER_PASSWORD)
+# TODO: Check if connection was successful
+log('Logged in successfully.')
+ftp.cwd(PAYSERVER_PATH)
+
+# Upload Generated Files
+log('Uploading Generated Files...')
+with open(out_filename + '.txt', 'rb') as file:
+    ftp.storbinary('STOR ' + out_filename + '.txt', file)
+with open(out_filename + '.xml', 'rb') as file:
+    ftp.storbinary('STOR ' + out_filename + '.xml', file)
+ftp.quit()
+log('Disconnected From Server.')
+# TODO: Check if upload worked
+
+log('End of Script.')
 logfile.close()
