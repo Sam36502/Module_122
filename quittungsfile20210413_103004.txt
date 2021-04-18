@@ -1,2 +1,0 @@
-20210413-103004  K821_21003_invoice.xml verarbeitet -- Ref:20210413102543/Ref:A003/Ref:12345678/Amt:0000013500/
-20210413-103004  K821_21003_invoice.txt verarbeitet -- AdamAdler;Bahnhofstrasse1;8000Zuerich;Kundennummer:41301000000012497;RechnungNr21003;TotalCHF1350.0;ZahlungszielohneAbzugTage(20.04.2021)
