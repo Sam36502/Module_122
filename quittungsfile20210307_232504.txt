@@ -1,0 +1,2 @@
+20210307-232504  K821_21003_invoice.xml verarbeitet -- Ref:202007164522001/Ref:21003/Ref:A003/Ref:12345678/Amt:0000135000/
+20210307-232504  K821_21003_invoice.txt verarbeitet -- AdamAdler;Bahnhofstrasse1;8000Zuerich;CHE-111.222.333MWST;Kundennummer:K821;RechnungNr21003;TotalCHF1350.00;ZahlungszielohneAbzug30Tage(30.08.2020)

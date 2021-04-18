@@ -1,0 +1,9 @@
+Sehr geehrte(r) {{recipient_name}}
+
+Am {{date_now}} um {{time_now}} wurde die erfolgreiche Bearbeitung der Rechnung {{bill_num}}
+vom Zahlungssystem "{{payment_system_address}}" gemeldet.
+
+Mit freundlichen Grüssen
+
+Samuel Pearce
+Firma_X

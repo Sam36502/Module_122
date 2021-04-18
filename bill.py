@@ -2,9 +2,9 @@
 # Bill Class for Bill Script
 #
 
-from io import StringIO
 import csv
 import datetime
+from io import StringIO
 
 
 class BillInfo:

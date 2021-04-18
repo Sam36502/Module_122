@@ -4,8 +4,9 @@
 # versions on to the payment server.
 #
 # Samuel Pearce
-from datetime import datetime
+
 import chevron
+from datetime import datetime
 from ftplib import FTP
 from bill import Bill
 
