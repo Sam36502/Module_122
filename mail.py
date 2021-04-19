@@ -7,18 +7,18 @@ import chevron
 import smtplib
 import ssl
 import codecs
+import configparser
 from datetime import datetime
 from email import encoders
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 
-# TODO: Config File?
-MAIL_SERVER = 'smtp.gmail.com'
-SSL_PORT = 465
-EMAIL_ADDRESS = 'bismarckdevemail@gmail.com'
-EMAIL_PASSWORD = 'Berufsschule8005!'
-EMAIL_TEMPLATE = '/home/bismarck/Module_122/mail_template.txt'
+# Config
+CONFIG_FILENAME = 'config.ini'
+parser = configparser.ConfigParser()
+parser.read(CONFIG_FILENAME)
+config = parser['DEFAULT']
 
 
 def sendMsg(recipient_address, subject, content, attachment):
@@ -26,7 +26,7 @@ def sendMsg(recipient_address, subject, content, attachment):
 
     message = MIMEMultipart()
     message['Subject'] = subject
-    message['From'] = EMAIL_ADDRESS
+    message['From'] = config['EMAIL_ADDRESS']
     message['To'] = recipient_address
 
     message.attach(MIMEText(content, 'plain'))
@@ -43,12 +43,12 @@ def sendMsg(recipient_address, subject, content, attachment):
     )
     message.attach(part)
 
-    with smtplib.SMTP_SSL(MAIL_SERVER, SSL_PORT, context=context) as server:
-        server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        server.sendmail(EMAIL_ADDRESS, recipient_address, message.as_string())
+    with smtplib.SMTP_SSL(config['MAIL_SERVER'], config['SSL_PORT'], context=context) as server:
+        server.login(config['EMAIL_ADDRESS'], config['EMAIL_PASSWORD'])
+        server.sendmail(config['EMAIL_ADDRESS'], recipient_address, message.as_string())
 
 def generateMailContent(recipient_name, bill_num, payment_sys_address):
-    with codecs.open(EMAIL_TEMPLATE, 'r', 'utf-8') as template:
+    with codecs.open(config['EMAIL_TEMPLATE'], 'r', 'utf-8') as template:
 
         now = datetime.now()
         fields = {

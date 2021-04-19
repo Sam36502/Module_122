@@ -4,33 +4,24 @@
 # versions on to the payment server.
 #
 # Samuel Pearce
+import os
 
 import chevron
+import configparser
 from datetime import datetime
 from ftplib import FTP
 from bill import Bill
 
-# Constants
-LOG_FILE = '/home/bismarck/Module_122/latest.log'
-TXT_TEMPLATE_FILENAME = '/home/bismarck/Module_122/txt_template.txt'
-XML_TEMPLATE_FILENAME = '/home/bismarck/Module_122/xml_template.txt'
-
-# TODO: Config File
-ABHOLSERVER_HOSTNAME = 'ftp.haraldmueller.ch'
-ABHOLSERVER_USERNAME = 'schoolerinvoices'
-ABHOLSERVER_PASSWORD = 'Berufsschule8005!'
-ABHOLSERVER_PATH = 'out/AP18aPearce'
-
-PAYSERVER_HOSTNAME = '134.119.225.245'
-PAYSERVER_USERNAME = '310721-297-zahlsystem'
-PAYSERVER_PASSWORD = 'Berufsschule8005!'
-PAYSERVER_PATH = 'in/AP18aPearce'
-
+# Config
+CONFIG_FILENAME = 'config.ini'
+parser = configparser.ConfigParser()
+parser.read(CONFIG_FILENAME)
+config = parser['DEFAULT']
 
 # Functions
 def log(str):
     now = datetime.now()
-    current_time = now.strftime("[%H:%M:%S] ")
+    current_time = now.strftime("[%Y-%m-%d %H:%M:%S] ")
     logfile.write(current_time + str + '\n')
 
 
@@ -39,16 +30,15 @@ def getBillNames(name):
         bill_names.append(name)
 
 
-logfile = open(LOG_FILE, 'a')
-logfile.write(' -- Bill Retriever Log --\n\n')
+logfile = open(config['LOG_FILE'], 'a')
+logfile.write('\n -- Bill Retriever Log --\n\n')
 
 # Connect to Server
 log('Connecting to server...')
-ftp = FTP(ABHOLSERVER_HOSTNAME)
-ftp.login(ABHOLSERVER_USERNAME, ABHOLSERVER_PASSWORD)
-# TODO: Check if connection was successful
+ftp = FTP(config['ABHOLSERVER_HOSTNAME'])
+ftp.login(config['ABHOLSERVER_USERNAME'], config['ABHOLSERVER_PASSWORD'])
 log('Logged in successfully.')
-ftp.cwd(ABHOLSERVER_PATH)
+ftp.cwd(config['SERVER_OUT_PATH'])
 
 # Get names of new bills
 bill_names = []
@@ -59,7 +49,7 @@ log('Retrieved bill names.')
 for bill in bill_names:
     with open(bill, 'wb') as bd:
         ftp.retrbinary('RETR ' + bill, bd.write)
-    # DEBUG: Don't delete file from server # ftp.delete(bill)
+    ftp.delete(bill)
 log('Retrieved and deleted bill files.')
 log('Closing connection.')
 ftp.quit()
@@ -68,14 +58,19 @@ ftp.quit()
 log('Parsing Data...')
 bills = []
 for bill_file in bill_names:
-    bills.append(Bill(bill_file))
+    try:
+        bills.append(Bill(bill_file))
+    except AttributeError:
+        log('Bill file \'' + bill_file + '\' has an invalid format.')
+        os.remove(bill_file)
+        continue
 # TODO: Check parsing was successful
 log('Data Parsed Successfully.')
 
 for curr_bill in bills:
     # Generate Text Output
     log('Generating human-readable file...')
-    with open(TXT_TEMPLATE_FILENAME, 'r') as template:
+    with open(config['TXT_TEMPLATE_FILENAME'], 'r') as template:
 
         fields = {
             'sender_name': 			curr_bill.sender.name,
@@ -118,7 +113,7 @@ for curr_bill in bills:
 
     # Generate XML Output
     log('Generating XML file...')
-    with open(XML_TEMPLATE_FILENAME, 'r') as template:
+    with open(config['XML_TEMPLATE_FILENAME'], 'r') as template:
 
         fields = {
             'party_ID': curr_bill.sender.party_ID,
@@ -152,11 +147,11 @@ for curr_bill in bills:
 
 # Connect to Server
 log('Connecting to server...')
-ftp = FTP(PAYSERVER_HOSTNAME)
-ftp.login(PAYSERVER_USERNAME, PAYSERVER_PASSWORD)
+ftp = FTP(config['PAYSERVER_HOSTNAME'])
+ftp.login(config['PAYSERVER_USERNAME'], config['PAYSERVER_PASSWORD'])
 # TODO: Check if connection was successful
 log('Logged in successfully.')
-ftp.cwd(PAYSERVER_PATH)
+ftp.cwd(config['SERVER_IN_PATH'])
 
 # Upload Generated Files
 log('Uploading Generated Files...')

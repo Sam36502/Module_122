@@ -15,7 +15,11 @@ class BillInfo:
         ]
         f = StringIO(csv_line)
         reader = csv.DictReader(f, delimiter=';', fieldnames=field_names)
+
         for row in reader:
+            for f in field_names:
+                if row[f] == '':
+                    raise AttributeError
             self.bill_num = row['bill_num'].removeprefix('Rechnung_')  # Get rid of 'Rechnung' label
             self.job_num = row['job_num'].removeprefix('Auftrag_')  # Get rid of 'Auftrag' label
             self.sender_location = row['sender_location']
@@ -33,6 +37,9 @@ class Sender:
         f = StringIO(csv_line)
         reader = csv.DictReader(f, delimiter=';', fieldnames=field_names)
         for row in reader:
+            for f in field_names:
+                if row[f] == '':
+                    raise AttributeError
             self.party_ID = row['party_ID']
             self.customer_num = row['customer_num']
             self.name = row['name']
@@ -51,6 +58,9 @@ class Receiver:
         f = StringIO(csv_line)
         reader = csv.DictReader(f, delimiter=';', fieldnames=field_names)
         for row in reader:
+            for f in field_names:
+                if row[f] == '':
+                    raise AttributeError
             self.customer_ID = row['customer_ID']
             self.name = row['name']
             self.address = row['address']
@@ -66,6 +76,9 @@ class BillItem:
         f = StringIO(csv_line)
         reader = csv.DictReader(f, delimiter=';', fieldnames=field_names)
         for row in reader:
+            for f in field_names:
+                if row[f] == '':
+                    raise AttributeError
             self.item_num = row['item_num']
             self.item_label = row['item_label']
             self.amount = row['amount']
@@ -81,7 +94,6 @@ class Bill:
 
         with open(filename, 'r') as f:
             for line in f:
-                # TODO: Constants/Config?
                 if line.startswith('Rechnung'):
                     self.billInfo = BillInfo(line)
                 elif line.startswith('Herkunft'):
@@ -90,6 +102,15 @@ class Bill:
                     self.receiver = Receiver(line)
                 elif line.startswith('RechnPos'):
                     self.items.append(BillItem(line))  # Add to list of items
+
+        # Check all required fields have been parsed
+        if (
+            not hasattr(self, 'billInfo')
+            or not hasattr(self, 'sender')
+            or not hasattr(self, 'receiver')
+            or not hasattr(self, 'items')
+        ):
+            raise AttributeError
 
         # Calculate other required info
         self.billInfo.totalVAT = 0.0

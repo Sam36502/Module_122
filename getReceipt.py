@@ -7,30 +7,17 @@
 import os
 
 import mail
+from mail import config
 from os import walk
 from datetime import datetime
 from ftplib import FTP
 from zipfile import ZipFile
 from bill import Bill
 
-# Constants
-# TODO: Config File
-LOG_FILE = '/home/bismarck/Module_122/latest.log'
-
-ABHOLSERVER_HOSTNAME = 'ftp.haraldmueller.ch'
-ABHOLSERVER_USERNAME = 'schoolerinvoices'
-ABHOLSERVER_PASSWORD = 'Berufsschule8005!'
-ABHOLSERVER_PATH = 'in/AP18aPearce'
-
-PAYSERVER_HOSTNAME = '134.119.225.245'
-PAYSERVER_USERNAME = '310721-297-zahlsystem'
-PAYSERVER_PASSWORD = 'Berufsschule8005!'
-PAYSERVER_RECEIPT_PATH = 'out/AP18aPearce'
-
 # Functions
 def log(str):
     now = datetime.now()
-    current_time = now.strftime("[%Y/%m/%d - %H:%M:%S] ")
+    current_time = now.strftime("[%Y-%m-%d - %H:%M:%S] ")
     logfile.write(current_time + str + '\n')
 
 def getReceiptNames(name):
@@ -38,8 +25,8 @@ def getReceiptNames(name):
         receipt_names.append(name)
 
 # Starting logger
-logfile = open(LOG_FILE, 'a')
-logfile.write(' -- Receipt Retriever Log --\n\n')
+logfile = open(config['LOG_FILE'], 'a')
+logfile.write('\n -- Receipt Retriever Log --\n\n')
 
 # Get bill info
 _, _, filenames = next(walk('./'))
@@ -53,11 +40,11 @@ log('Data parsed successfully.')
 
 # Connect to Server
 log('Connecting to server...')
-ftp = FTP(PAYSERVER_HOSTNAME)
-ftp.login(PAYSERVER_USERNAME, PAYSERVER_PASSWORD)
+ftp = FTP(config['PAYSERVER_HOSTNAME'])
+ftp.login(config['PAYSERVER_USERNAME'], config['PAYSERVER_PASSWORD'])
 # TODO: Check if connection was successful
 log('Logged in successfully.')
-ftp.cwd(PAYSERVER_RECEIPT_PATH)
+ftp.cwd(config['SERVER_OUT_PATH'])
 
 # Retrieve Receipts
 receipt_names = []
@@ -65,7 +52,7 @@ ftp.retrlines('NLST', getReceiptNames)
 for receipt in receipt_names:
     with open(receipt, 'wb') as bd:
         ftp.retrbinary('RETR ' + receipt, bd.write)
-        # DEBUG: Don't delete file from server # ftp.delete(receipt)
+        ftp.delete(receipt)
 log('Retrieved receipt files.')
 log('Closing connection.')
 ftp.quit()
@@ -84,7 +71,7 @@ for bill in bills:
     mail_content = mail.generateMailContent(
         bill.sender.name,
         bill.billInfo.bill_num,
-        PAYSERVER_HOSTNAME
+        config['PAYSERVER_HOSTNAME']
     )
     log('Generated Bill-' + bill.billInfo.bill_num + '\'s E-Mail.')
     archive_filename = curr_bill.sender.customer_num + '_' + curr_bill.billInfo.bill_num + '_invoice.zip'
@@ -98,9 +85,9 @@ log('Sent all Emails.')
 
 # Upload archive to customer server
 log('Archiving bill info on customer server')
-ftp = FTP(ABHOLSERVER_HOSTNAME)
-ftp.login(ABHOLSERVER_USERNAME, ABHOLSERVER_PASSWORD)
-ftp.cwd(ABHOLSERVER_PATH)
+ftp = FTP(config['ABHOLSERVER_HOSTNAME'])
+ftp.login(config['ABHOLSERVER_USERNAME'], config['ABHOLSERVER_PASSWORD'])
+ftp.cwd(config['SERVER_IN_PATH'])
 
 for curr_bill in bills:
     archive_filename = curr_bill.sender.customer_num + '_' + curr_bill.billInfo.bill_num + '_invoice.zip'
