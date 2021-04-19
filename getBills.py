@@ -11,9 +11,9 @@ from ftplib import FTP
 from bill import Bill
 
 # Constants
-LOG_FILE = './latest.log'
-TXT_TEMPLATE_FILENAME = 'txt_template.txt'
-XML_TEMPLATE_FILENAME = 'xml_template.txt'
+LOG_FILE = '/home/bismarck/Module_122/latest.log'
+TXT_TEMPLATE_FILENAME = '/home/bismarck/Module_122/txt_template.txt'
+XML_TEMPLATE_FILENAME = '/home/bismarck/Module_122/xml_template.txt'
 
 # TODO: Config File
 ABHOLSERVER_HOSTNAME = 'ftp.haraldmueller.ch'

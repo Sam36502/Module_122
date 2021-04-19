@@ -1,94 +1,70 @@
  -- Bill Retriever Log --
 
-[2021/04/16 - 21:52:10] Connecting to server...
-[2021/04/16 - 21:52:10] Logged in successfully.
-[2021/04/16 - 21:52:10] Retrieved receipt files.
-[2021/04/16 - 21:52:10] Closing connection.
+[17:38:08] Connecting to server...
+[17:38:08] Logged in successfully.
+[17:38:08] Retrieved bill names.
+[17:38:08] Retrieved and deleted bill files.
+[17:38:08] Closing connection.
+[17:38:08] Parsing Data...
+[17:38:08] Data Parsed Successfully.
+[17:38:08] Generating human-readable file...
+[17:38:08] TXT File Generated Successfully.
+[17:38:08] Generating XML file...
+[17:38:08] XML File Generated Successfully.
+[17:38:08] Generated text file.
+[17:38:08] Connecting to server...
+[17:38:08] Logged in successfully.
+[17:38:08] Uploading Generated Files...
+[17:38:08] Disconnected From Server.
+[17:38:08] End of Script.
+ -- Receipt Retriever Log --
+
+[2021/04/18 - 17:41:29] Parsing previous bill data...
+[2021/04/18 - 17:41:29] Data parsed successfully.
+[2021/04/18 - 17:41:29] Connecting to server...
+[2021/04/18 - 17:41:29] Logged in successfully.
+[2021/04/18 - 17:41:29] Retrieved receipt files.
+[2021/04/18 - 17:41:29] Closing connection.
+[2021/04/18 - 17:41:29] Sending notification Emails...
+[2021/04/18 - 17:41:29] Generated Bill-21003's E-Mail.
+[2021/04/18 - 17:41:31] Sent all Emails.
+[2021/04/18 - 17:41:31] Archiving bill info on customer server
+[2021/04/18 - 17:41:31] Finished archive upload.
+[2021/04/18 - 17:41:31] Deleting temporary files...
+[2021/04/18 - 17:41:31] Finished removing temp files.
+[2021/04/18 - 17:41:31] End of Script.
  -- Bill Retriever Log --
 
-[2021/04/16 - 21:53:51] Connecting to server...
-[2021/04/16 - 21:53:51] Logged in successfully.
-[2021/04/16 - 21:53:51] Retrieved receipt files.
-[2021/04/16 - 21:53:51] Closing connection.
- -- Bill Retriever Log --
+[10:00:01] Connecting to server...
+[10:00:01] Logged in successfully.
+[10:00:01] Retrieved bill names.
+[10:00:01] Retrieved and deleted bill files.
+[10:00:01] Closing connection.
+[10:00:01] Parsing Data...
+[10:00:01] Data Parsed Successfully.
+[10:00:01] Generating human-readable file...
+[10:00:01] TXT File Generated Successfully.
+[10:00:01] Generating XML file...
+[10:00:01] XML File Generated Successfully.
+[10:00:01] Generated text file.
+[10:00:01] Connecting to server...
+[10:00:01] Logged in successfully.
+[10:00:01] Uploading Generated Files...
+[10:00:02] Disconnected From Server.
+[10:00:02] End of Script.
+ -- Receipt Retriever Log --
 
-[2021/04/16 - 21:55:44] Connecting to server...
-[2021/04/16 - 21:55:44] Logged in successfully.
-[2021/04/16 - 21:55:44] Retrieved receipt files.
-[2021/04/16 - 21:55:44] Closing connection.
- -- Bill Retriever Log --
-
-[2021/04/16 - 21:56:14] Connecting to server...
-[2021/04/16 - 21:56:15] Logged in successfully.
-[2021/04/16 - 21:56:15] Retrieved receipt files.
-[2021/04/16 - 21:56:15] Closing connection.
- -- Bill Retriever Log --
-
-[2021/04/16 - 21:56:21] Connecting to server...
-[2021/04/16 - 21:56:21] Logged in successfully.
-[2021/04/16 - 21:56:21] Retrieved receipt files.
-[2021/04/16 - 21:56:21] Closing connection.
- -- Bill Retriever Log --
-
-[2021/04/16 - 21:57:54] Connecting to server...
-[2021/04/16 - 21:57:54] Logged in successfully.
-[2021/04/16 - 21:57:54] Retrieved receipt files.
-[2021/04/16 - 21:57:54] Closing connection.
-[2021/04/16 - 21:57:54] Parsing Data...
-[2021/04/16 - 21:57:54] Data Parsed Successfully.
-[2021/04/16 - 21:57:54] Sending notification Emails...
-[2021/04/16 - 21:57:54] Generated Bill-21003's E-Mail.
-[2021/04/16 - 21:57:55] Sent all Emails.
-[2021/04/16 - 21:57:55] End of Script.
- -- Bill Retriever Log --
-
-[2021/04/16 - 22:03:33] Connecting to server...
-[2021/04/16 - 22:03:33] Logged in successfully.
-[2021/04/16 - 22:03:33] Retrieved receipt files.
-[2021/04/16 - 22:03:33] Closing connection.
-[2021/04/16 - 22:03:33] Parsing Data...
-[2021/04/16 - 22:03:33] Data Parsed Successfully.
-[2021/04/16 - 22:03:33] Sending notification Emails...
-[2021/04/16 - 22:03:33] Generated Bill-21003's E-Mail.
-[2021/04/16 - 22:03:34] Sent all Emails.
-[2021/04/16 - 22:03:34] End of Script.
- -- Bill Retriever Log --
-
-[2021/04/16 - 22:09:03] Connecting to server...
-[2021/04/16 - 22:09:03] Logged in successfully.
-[2021/04/16 - 22:09:03] Retrieved receipt files.
-[2021/04/16 - 22:09:03] Closing connection.
-[2021/04/16 - 22:09:03] Parsing Data...
-[2021/04/16 - 22:09:03] Data Parsed Successfully.
-[2021/04/16 - 22:09:03] Sending notification Emails...
-[2021/04/16 - 22:09:03] Generated Bill-21003's E-Mail.
-[2021/04/16 - 22:09:04] Sent all Emails.
-[2021/04/16 - 22:09:04] End of Script.
- -- Bill Retriever Log --
-
-[2021/04/18 - 18:37:32] Parsing previous bill data...
-[2021/04/18 - 18:37:32] Data parsed successfully.
-[2021/04/18 - 18:37:32] Connecting to server...
-[2021/04/18 - 18:37:32] Logged in successfully.
-[2021/04/18 - 18:37:32] Retrieved receipt files.
-[2021/04/18 - 18:37:32] Closing connection.
-[2021/04/18 - 18:37:32] Sending notification Emails...
-[2021/04/18 - 18:37:32] Generated Bill-21003's E-Mail.
-[2021/04/18 - 18:37:34] Sent all Emails.
-[2021/04/18 - 18:37:34] Archiving bill info on customer server
-[2021/04/18 - 18:37:34] Finished archive upload.
-[2021/04/18 - 18:37:34] End of Script.
- -- Bill Retriever Log --
-
-[2021/04/18 - 18:49:07] Parsing previous bill data...
-[2021/04/18 - 18:49:07] Data parsed successfully.
-[2021/04/18 - 18:49:07] Connecting to server...
-[2021/04/18 - 18:49:07] Logged in successfully.
-[2021/04/18 - 18:49:07] Retrieved receipt files.
-[2021/04/18 - 18:49:07] Closing connection.
-[2021/04/18 - 18:49:07] Sending notification Emails...
-[2021/04/18 - 18:49:07] Generated Bill-21003's E-Mail.
-[2021/04/18 - 18:49:09] Sent all Emails.
-[2021/04/18 - 18:49:09] Archiving bill info on customer server
-[2021/04/18 - 18:49:09] Finished archive upload.
-[2021/04/18 - 18:49:09] End of Script.
+[2021/04/19 - 11:00:01] Parsing previous bill data...
+[2021/04/19 - 11:00:01] Data parsed successfully.
+[2021/04/19 - 11:00:01] Connecting to server...
+[2021/04/19 - 11:00:01] Logged in successfully.
+[2021/04/19 - 11:00:02] Retrieved receipt files.
+[2021/04/19 - 11:00:02] Closing connection.
+[2021/04/19 - 11:00:02] Sending notification Emails...
+[2021/04/19 - 11:00:02] Generated Bill-21003's E-Mail.
+[2021/04/19 - 11:00:03] Sent all Emails.
+[2021/04/19 - 11:00:03] Archiving bill info on customer server
+[2021/04/19 - 11:00:04] Finished archive upload.
+[2021/04/19 - 11:00:04] Deleting temporary files...
+[2021/04/19 - 11:00:04] Finished removing temp files.
+[2021/04/19 - 11:00:04] End of Script.

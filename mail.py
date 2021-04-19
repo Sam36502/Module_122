@@ -18,7 +18,7 @@ MAIL_SERVER = 'smtp.gmail.com'
 SSL_PORT = 465
 EMAIL_ADDRESS = 'bismarckdevemail@gmail.com'
 EMAIL_PASSWORD = 'Berufsschule8005!'
-EMAIL_TEMPLATE = 'mail_template.txt'
+EMAIL_TEMPLATE = '/home/bismarck/Module_122/mail_template.txt'
 
 
 def sendMsg(recipient_address, subject, content, attachment):

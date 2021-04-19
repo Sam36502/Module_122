@@ -15,7 +15,7 @@ from bill import Bill
 
 # Constants
 # TODO: Config File
-LOG_FILE = './latest.log'
+LOG_FILE = '/home/bismarck/Module_122/latest.log'
 
 ABHOLSERVER_HOSTNAME = 'ftp.haraldmueller.ch'
 ABHOLSERVER_USERNAME = 'schoolerinvoices'
@@ -39,7 +39,7 @@ def getReceiptNames(name):
 
 # Starting logger
 logfile = open(LOG_FILE, 'a')
-logfile.write(' -- Bill Retriever Log --\n\n')
+logfile.write(' -- Receipt Retriever Log --\n\n')
 
 # Get bill info
 _, _, filenames = next(walk('./'))
